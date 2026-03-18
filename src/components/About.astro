@@ -1,0 +1,151 @@
+---
+import Section from "./ui/Section.astro";
+import { Home, Clock, Star, Users, MapPin } from "lucide-react";
+---
+
+<Section id="about" class="bg-white py-16 md:py-24">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+        <!-- Image Column -->
+        <div
+            class="w-full lg:w-[45%] max-w-xl mx-auto lg:max-w-none relative order-2 lg:order-1 mb-12 lg:mb-0"
+        >
+            <div
+                class="relative rounded-3xl overflow-hidden shadow-xl border border-border-light aspect-[4/3] lg:aspect-[4/5] group"
+            >
+                <img
+                    src="/images/hero-clean-home.jpg"
+                    alt="Bright, freshly cleaned living room by Home Cleaning and Co in St. Petersburg"
+                    class="w-full h-full object-cover object-top transform transition-transform duration-700 group-hover:scale-105"
+                    width="800"
+                    height="1000"
+                    loading="lazy"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-secondary/30 via-transparent to-transparent"
+                >
+                </div>
+            </div>
+
+            <!-- Floating Stats Card -->
+            <div
+                class="absolute left-6 -right-4 -bottom-10 sm:left-auto sm:-right-6 sm:-bottom-12 sm:w-[280px] lg:-right-8 lg:-bottom-10 lg:w-[320px] z-10"
+            >
+                <div
+                    class="rounded-2xl border border-white/60 bg-white/80 backdrop-blur-xl p-5 shadow-xl shadow-secondary/10"
+                >
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="mt-0.5 shrink-0 rounded-full bg-primary/10 p-2.5 text-primary"
+                            >
+                                <Home className="w-5 h-5" />
+                            </span>
+                            <div>
+                                <p
+                                    class="text-base leading-tight font-bold text-secondary"
+                                >
+                                    Family-Owned
+                                </p>
+                                <p class="text-sm font-bold text-secondary">
+                                    & Operated
+                                </p>
+                                <p class="text-xs font-medium text-text-light">
+                                    Local St. Pete Business
+                                </p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="mt-0.5 shrink-0 rounded-full bg-primary/10 p-2.5 text-primary"
+                            >
+                                <Clock className="w-5 h-5" />
+                            </span>
+                            <div>
+                                <p
+                                    class="text-base leading-tight font-bold text-secondary"
+                                >
+                                    24-Hour Reclean
+                                </p>
+                                <p class="text-xs font-medium text-text-light">
+                                    Satisfaction Guarantee
+                                </p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="mt-0.5 shrink-0 rounded-full bg-primary/10 p-2.5 text-primary"
+                            >
+                                <Star className="w-5 h-5" />
+                            </span>
+                            <div>
+                                <p
+                                    class="text-base leading-tight font-bold text-secondary"
+                                >
+                                    5-Star Rated
+                                </p>
+                                <p class="text-xs font-medium text-text-light">
+                                    Google Reviews
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Column -->
+        <div
+            class="w-full lg:w-[55%] text-center lg:text-left order-1 lg:order-2"
+        >
+            <span
+                class="inline-flex items-center gap-1.5 text-text-600 font-semibold tracking-wider uppercase text-sm bg-surface border border-border-light px-4 py-1.5 rounded-full mb-6"
+                >About Us</span
+            >
+            <h2
+                class="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary tracking-tight leading-tight mb-6"
+            >
+                More Than Just Cleaners.<br class="hidden lg:block" />
+                We're Family.
+            </h2>
+
+            <p class="text-lg text-text-light leading-relaxed mb-8">
+                Home Cleaning & Co is a sibling-owned cleaning company proudly
+                serving St. Petersburg. As a family-run business, we take pride
+                in delivering dependable service with a personal touch. Every
+                visit is handled with the same level of care we'd expect in our
+                own home.
+            </p>
+
+            <div
+                class="bg-surface border border-border-light rounded-3xl p-6 md:p-8 text-center lg:text-left mb-8"
+            >
+                <p
+                    class="text-sm font-bold uppercase tracking-wider text-primary mb-3"
+                >
+                    Why We're Different
+                </p>
+                <p class="text-text-700 leading-relaxed font-medium">
+                    We stand by our work with a 24-hour reclean guarantee. If
+                    any detail is missed, we'll return within 24 hours to make
+                    it right. That consistency and accountability is why local
+                    families continue to trust us.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                <span
+                    class="inline-flex items-center gap-2 rounded-full bg-surface border border-border-light px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm"
+                >
+                    <Users className="w-4 h-4 text-primary shrink-0" />
+                    Sibling-owned & operated
+                </span>
+                <span
+                    class="inline-flex items-center gap-2 rounded-full bg-surface border border-border-light px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm"
+                >
+                    <MapPin className="w-4 h-4 text-primary shrink-0" />
+                    Based in St. Petersburg, FL
+                </span>
+            </div>
+        </div>
+    </div>
+</Section>

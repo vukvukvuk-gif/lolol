@@ -1,0 +1,63 @@
+---
+
+---
+
+<div
+    id="sticky-book"
+    class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-secondary/10 px-4 py-4 lg:hidden transform translate-y-full transition-transform duration-300 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+>
+    <div class="flex items-center justify-between gap-4 max-w-sm mx-auto">
+        <div class="flex flex-col">
+            <span
+                class="text-xs font-bold text-secondary uppercase tracking-wider"
+            >
+                Ready to clean?
+            </span>
+            <span class="text-xs text-text-500"> Get a quote in seconds </span>
+        </div>
+        <a
+            href="#quote"
+            class="bg-primary text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-primary-dark transition-colors text-sm whitespace-nowrap"
+        >
+            Book Now
+        </a>
+    </div>
+</div>
+
+<script>
+    const stickyBook = document.getElementById("sticky-book");
+    const heroSection = document.getElementById("hero");
+    const quoteSection = document.getElementById("quote");
+
+    if (stickyBook) {
+        let isHeroVisible = true; // Assume visible initially
+        let isQuoteVisible = false;
+
+        const updateStickyVisibility = () => {
+            // Show ONLY if Hero is NOT visible AND Quote is NOT visible
+            if (!isHeroVisible && !isQuoteVisible) {
+                stickyBook.classList.remove("translate-y-full");
+            } else {
+                stickyBook.classList.add("translate-y-full");
+            }
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.target === heroSection) {
+                        isHeroVisible = entry.isIntersecting;
+                    }
+                    if (entry.target === quoteSection) {
+                        isQuoteVisible = entry.isIntersecting;
+                    }
+                });
+                updateStickyVisibility();
+            },
+            { threshold: 0.1 }, // Trigger when even a small part is visible
+        );
+
+        if (heroSection) observer.observe(heroSection);
+        if (quoteSection) observer.observe(quoteSection);
+    }
+</script>

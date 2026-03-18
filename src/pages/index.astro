@@ -1,0 +1,317 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Services from "../components/Services.astro";
+import Testimonials from "../components/Testimonials.astro";
+import StickyBook from "../components/StickyBook.astro";
+import Areas from "../components/Areas.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+import BookingForm from "../components/BookingForm";
+import Section from "../components/ui/Section.astro";
+import { Check } from "lucide-react";
+---
+
+<Layout
+	title="Home Cleaning & Co | Best Cleaning Service in St. Petersburg, FL"
+>
+	<Fragment slot="head">
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify([
+				{
+					"@context": "https://schema.org",
+					"@type": "LocalBusiness",
+					"@id": "https://homecleaningco.com/#business",
+					name: "Home Cleaning & Co",
+					image: "https://homecleaningco.com/images/hero-clean-home.jpg",
+					url: "https://homecleaningco.com",
+					telephone: "+19543933479",
+					email: "support@homecleaningco.com",
+					address: {
+						"@type": "PostalAddress",
+						addressLocality: "St. Petersburg",
+						addressRegion: "FL",
+						postalCode: "33701",
+						addressCountry: "US",
+					},
+					geo: {
+						"@type": "GeoCoordinates",
+						latitude: 27.7676,
+						longitude: -82.6403,
+					},
+					areaServed: [
+						{ "@type": "City", name: "St. Petersburg" },
+						{ "@type": "City", name: "South Pasadena" },
+						{ "@type": "City", name: "Pinellas Park" },
+						{ "@type": "City", name: "Kenneth City" },
+						{ "@type": "City", name: "Lealman" },
+						{ "@type": "City", name: "West Lealman" },
+						{ "@type": "City", name: "Gulfport" },
+						{ "@type": "City", name: "Seminole" },
+						{ "@type": "City", name: "Treasure Island" },
+						{ "@type": "City", name: "Madeira Beach" },
+						{ "@type": "City", name: "Bay Pines" },
+					],
+					openingHoursSpecification: {
+						"@type": "OpeningHoursSpecification",
+						dayOfWeek: [
+							"Monday",
+							"Tuesday",
+							"Wednesday",
+							"Thursday",
+							"Friday",
+							"Saturday",
+							"Sunday",
+						],
+						opens: "07:00",
+						closes: "20:00",
+					},
+					priceRange: "$$",
+					aggregateRating: {
+						"@type": "AggregateRating",
+						ratingValue: "5.0",
+						reviewCount: "9",
+						bestRating: "5",
+					},
+					hasOfferCatalog: {
+						"@type": "OfferCatalog",
+						name: "Cleaning Services",
+						itemListElement: [
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Regular Maintenance Cleaning",
+									description:
+										"Recurring house cleaning to keep your home consistently fresh and tidy.",
+								},
+							},
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Deep Cleaning",
+									description:
+										"Thorough top-to-bottom cleaning for a deeper level of clean.",
+								},
+							},
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Move-In / Move-Out Cleaning",
+									description:
+										"Complete cleaning for vacant properties during transitions.",
+								},
+							},
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Airbnb Turnover Cleaning",
+									description:
+										"Fast, reliable cleaning between guests for short-term rentals.",
+								},
+							},
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Post-Construction Cleaning",
+									description:
+										"Dust, debris, and residue removal after renovations or new builds.",
+								},
+							},
+							{
+								"@type": "Offer",
+								itemOffered: {
+									"@type": "Service",
+									name: "Office Cleaning",
+									description:
+										"Professional workspace cleaning to maintain a healthy, productive office.",
+								},
+							},
+						],
+					},
+				},
+				{
+					"@context": "https://schema.org",
+					"@type": "FAQPage",
+					mainEntity: [
+						{
+							"@type": "Question",
+							name: "Do you bring supplies and equipment?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "Yes - we bring our own supplies and standard equipment. You do not need to provide anything. If you prefer specific products or want us to avoid certain ingredients, let us know in your quote request.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "What are your hours?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "We are available from 7am to 8pm, Monday through Sunday.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "What if I'm not satisfied?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "Let us know within 24 hours and we will come back to re-clean the specific areas you mention.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "Do I need to be home?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "No - many clients provide access instructions and come back to a spotless home.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "How do you price cleanings?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "Pricing depends on bedrooms, bathrooms, and the home's condition. Request a quote and we will confirm an accurate estimate quickly.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "What's your reschedule or cancellation policy?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "If you need to reschedule, please give us as much notice as possible so we can adjust the schedule and serve everyone on time.",
+							},
+						},
+					],
+				},
+				{
+					"@context": "https://schema.org",
+					"@type": "BreadcrumbList",
+					itemListElement: [
+						{
+							"@type": "ListItem",
+							position: 1,
+							name: "Home",
+							item: "https://homecleaningco.com/",
+						},
+					],
+				},
+			])}
+		/>
+	</Fragment>
+
+	<Header />
+
+	<main>
+		<Hero />
+		<StickyBook />
+		<About />
+		<Services />
+		<Testimonials />
+		<Areas />
+		<FAQ />
+
+		<Section
+			id="quote"
+			class="bg-background-mint/40 relative overflow-hidden py-24"
+		>
+			<div
+				class="absolute inset-0 opacity-35 pointer-events-none"
+				style="background-image: radial-gradient(rgba(5,150,105,0.16) 1.8px, transparent 1.8px); background-size: 28px 28px;"
+			>
+			</div>
+			<div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
+
+			<div
+				class="flex flex-col items-center relative z-10 max-w-4xl mx-auto text-center"
+			>
+				<span
+					class="inline-flex items-center gap-1.5 text-text-600 font-semibold tracking-wider uppercase text-xs bg-surface border border-border-light px-4 py-1.5 rounded-full mb-4"
+					>Get Started</span
+				>
+				<h2
+					class="text-4xl md:text-5xl font-bold text-text-900 mb-6 font-sans leading-tight"
+				>
+					Ready for a <span class="text-primary">Spotless Home?</span>
+				</h2>
+				<p
+					class="text-text-600 text-lg mb-10 max-w-2xl mx-auto leading-relaxed"
+				>
+					Tell us a bit about your home and your cleaning needs. We&apos;ll
+					get back to you with a personalized quote within 24 hours.
+					No hidden fees, just honest pricing.
+				</p>
+
+				<ul
+					class="flex flex-wrap justify-center gap-4 md:gap-8 mb-12 text-text-700 font-medium"
+				>
+					<li
+						class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-primary/20"
+					>
+						<span
+							class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0"
+						>
+							<Check className="w-3 h-3" />
+						</span>
+						Eco-friendly products
+					</li>
+					<li
+						class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-primary/20"
+					>
+						<span
+							class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0"
+						>
+							<Check className="w-3 h-3" />
+						</span>
+						Bonded & insured
+					</li>
+					<li
+						class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-primary/20"
+					>
+						<span
+							class="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0"
+						>
+							<Check className="w-3 h-3" />
+						</span>
+						Satisfaction Guarantee
+					</li>
+				</ul>
+
+				<div class="w-full max-w-xl mx-auto text-left">
+					<BookingForm client:visible />
+				</div>
+			</div>
+		</Section>
+	</main>
+
+	<Footer />
+</Layout>
+
+<script>
+	const sections = document.querySelectorAll("section[id], div[id='quote']");
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const id = entry.target.getAttribute("id");
+					if (id && id !== "hero") {
+						history.replaceState(null, null, `#${id}`);
+					} else if (id === "hero") {
+						history.replaceState(null, null, " ");
+					}
+				}
+			});
+		},
+		{ threshold: 0.5 },
+	);
+
+	sections.forEach((section) => observer.observe(section));
+</script>

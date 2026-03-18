@@ -1,0 +1,187 @@
+---
+import Section from "./ui/Section.astro";
+import { Star } from "lucide-react";
+
+const testimonials = [
+    {
+        name: "Sarah M.",
+        location: "St. Petersburg",
+        text: "The team did an incredible job! My house has never looked this clean. They were professional, on time, and paid attention to every detail.",
+        rating: 5,
+    },
+    {
+        name: "James D.",
+        location: "Clearwater",
+        text: "I've used several cleaning services before, but Home Cleaning & Co is by far the best. The team is friendly and they really care about their work.",
+        rating: 5,
+    },
+    {
+        name: "Emily R.",
+        location: "Tampa",
+        text: "Moving out was stressful enough, but their move-out cleaning service was a lifesaver. Got my full deposit back thanks to them!",
+        rating: 5,
+    },
+    {
+        name: "Michael B.",
+        location: "St. Pete Beach",
+        text: "Incredible attention to detail. They cleaned places I didn't even know were dirty. Highly recommend for deep cleaning.",
+        rating: 5,
+    },
+    {
+        name: "Jessica T.",
+        location: "Largo",
+        text: "Reliable and trustworthy. I leave them my key and come home to a sparkling house every time. Best part of my week!",
+        rating: 5,
+    },
+    {
+        name: "David W.",
+        location: "Seminole",
+        text: "Post-construction cleanup was a breeze with them. They removed all the dust and debris quickly. Professional and efficient.",
+        rating: 5,
+    },
+    {
+        name: "Ashley K.",
+        location: "St. Petersburg",
+        text: "The cleaners were so polite and respectful. They did a fantastic job on my bathrooms and kitchen. Will definitely book again.",
+        rating: 5,
+    },
+    {
+        name: "Robert L.",
+        location: "Clearwater Beach",
+        text: "Excellent service for my Airbnb rentals. They are quick, thorough, and always reliable. My guests love the cleanliness.",
+        rating: 5,
+    },
+    {
+        name: "Amanda P.",
+        location: "Pinellas Park",
+        text: "I love the eco-friendly products they use. Smells fresh without the harsh chemical smell. Great for my pets!",
+        rating: 5,
+    },
+];
+
+// Split testimonials into 3 columns for desktop, 2 for tablet, 1 for mobile (implicitly via CSS)
+// We'll just render 3 columns and hide/show based on breakpoints
+const col1 = [testimonials[0], testimonials[3], testimonials[6]];
+const col2 = [testimonials[1], testimonials[4], testimonials[7]];
+const col3 = [testimonials[2], testimonials[5], testimonials[8]];
+
+const columns = [
+    { items: col1, className: "animate-scroll-up-1" },
+    { items: col2, className: "hidden md:block animate-scroll-up-2" },
+    { items: col3, className: "hidden lg:block animate-scroll-up-3" },
+];
+---
+
+<Section
+    id="testimonials"
+    class="bg-background-mint py-16 md:py-24 overflow-hidden"
+>
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16 px-4 animate-fade-in-up">
+            <span
+                class="inline-flex items-center gap-1.5 text-text-600 font-semibold tracking-wider uppercase text-xs bg-surface border border-border-light px-4 py-1.5 rounded-full mb-4"
+                >Testimonials</span
+            >
+            <h2
+                class="text-4xl md:text-5xl font-bold text-secondary mb-6 font-sans tracking-tight"
+            >
+                Loved by <span class="text-primary">Locals</span>
+            </h2>
+            <p class="text-text-light max-w-lg mx-auto">
+                Real feedback from your neighbors in St. Petersburg and across
+                Pinellas County.
+            </p>
+        </div>
+
+        <div class="relative w-full h-[600px] overflow-hidden">
+            <!-- Fade Gradients -->
+            <div
+                class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background-mint to-transparent z-10 pointer-events-none"
+            >
+            </div>
+            <div
+                class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background-mint to-transparent z-10 pointer-events-none"
+            >
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                    columns.map((col) => (
+                        <div class={col.className}>
+                            {/* Duplicate content for seamless loop */}
+                            {[...col.items, ...col.items, ...col.items].map(
+                                (testimonial, index) => (
+                                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-secondary/5 mb-6 hover:shadow-md transition-shadow">
+                                        <div class="flex gap-1 mb-4 text-primary">
+                                            {[
+                                                ...Array(
+                                                    testimonial?.rating || 5,
+                                                ),
+                                            ].map(() => (
+                                                <Star className="w-4 h-4 fill-current" />
+                                            ))}
+                                        </div>
+                                        <p class="text-text-600 mb-6 leading-relaxed">
+                                            "{testimonial?.text}"
+                                        </p>
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                                {testimonial?.name.charAt(0)}
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-sm text-secondary">
+                                                    {testimonial?.name}
+                                                </p>
+                                                <p class="text-xs text-text-light">
+                                                    {testimonial?.location}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</Section>
+
+<style>
+    @keyframes scroll-up {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            /* 
+                We have 3 sets of items. 
+                Move up by 1/3 of the total height (one full set).
+                However, exact calculation depends on content height.
+                Using translate -50% assumes 2 sets. 
+                With 3 sets (original + duplicate + duplicate), -33.33% is one set.
+                But usually -50% of a container with 2 sets works for infinite if they are identical.
+                Let's stick to the example's logic of 2 sets moving -50%.
+                I added 3 sets above just in case, but let's assume the example logic:
+                transform: translateY(-50%);
+             */
+            transform: translateY(-33.33%);
+        }
+    }
+    .animate-scroll-up-1 {
+        animation: scroll-up 45s linear infinite;
+    }
+    .animate-scroll-up-2 {
+        animation: scroll-up 50s linear infinite;
+    }
+    .animate-scroll-up-3 {
+        animation: scroll-up 40s linear infinite;
+    }
+
+    /* Pause on hover */
+    .animate-scroll-up-1:hover,
+    .animate-scroll-up-2:hover,
+    .animate-scroll-up-3:hover {
+        animation-play-state: paused;
+    }
+</style>

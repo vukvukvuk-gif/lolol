@@ -1,0 +1,72 @@
+---
+import Section from "./ui/Section.astro";
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+    {
+        question: "Do you bring supplies and equipment?",
+        answer: "Absolutely! We arrive fully equipped with professional-grade vacuums, microfiber cloths, mops, and eco-friendly cleaning products — you don't need to lift a finger. If you have a preferred product or need us to avoid certain ingredients (allergies, pets, sensitivities), just mention it when you book and we'll happily accommodate.",
+    },
+    {
+        question: "What are your hours?",
+        answer: "We're available 7 am – 8 pm, seven days a week — including weekends and most holidays. We often have same-day or next-day openings, so if you need a cleaning on short notice, don't hesitate to reach out. You can book online anytime and we'll confirm your slot quickly.",
+    },
+    {
+        question: "What if I'm not satisfied?",
+        answer: "Your satisfaction is our top priority. If anything doesn't meet your expectations, let us know within 24 hours and we'll send our team back to re-clean those specific areas at absolutely no extra charge. We personally follow up to make sure everything is right — that's our 24-Hour Reclean Guarantee.",
+    },
+    {
+        question: "Do I need to be home?",
+        answer: "Not at all — many of our clients provide a lockbox code, smart-lock access, or garage code so we can clean while they're at work or running errands. For your very first cleaning, we do recommend a quick walk-through (even 5 minutes) so we can understand your priorities, but after that you can come home to a spotless house without being there.",
+    },
+    {
+        question: "How do you price cleanings?",
+        answer: "Our pricing is transparent and based on the number of bedrooms, bathrooms, and the type of cleaning you need — no hidden fees, ever. You can request a free quote through our site and we'll send you an accurate estimate within minutes. We believe in straightforward pricing so there are never any surprises on your bill.",
+    },
+    {
+        question: "What's your reschedule or cancellation policy?",
+        answer: "Life happens — we get it! We ask for at least 24 hours' notice if you need to reschedule or cancel so we can adjust our team's schedule and serve everyone on time. There's no penalty for rescheduling, and you can easily pick a new date through our booking system or by giving us a call.",
+    },
+];
+---
+
+<Section id="faq" class="bg-surface py-16 md:py-24">
+    <div class="max-w-3xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span
+                class="inline-flex items-center gap-1.5 text-text-600 font-semibold tracking-wider uppercase text-xs bg-white border border-border-light px-4 py-1.5 rounded-full mb-4"
+                >Common Questions</span
+            >
+            <h2
+                class="text-4xl md:text-5xl font-bold text-secondary mb-6 font-sans tracking-tight"
+            >
+                Frequently Asked <span class="text-primary">Questions</span>
+            </h2>
+            <p class="text-text-600 text-lg">
+                Quick answers to common questions.
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            {
+                faqs.map((faq, index) => (
+                    <div class="bg-white rounded-2xl shadow-md border border-border overflow-hidden transition-all duration-300 hover:shadow-lg group">
+                        <details class="group w-full">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                                <h3 class="text-lg font-bold text-text-900 pr-8">
+                                    {faq.question}
+                                </h3>
+                                <span class="text-primary transition-transform duration-300 group-open:rotate-180">
+                                    <ChevronDown className="w-5 h-5" />
+                                </span>
+                            </summary>
+                            <div class="px-6 pb-6 text-text-600 leading-relaxed">
+                                {faq.answer}
+                            </div>
+                        </details>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</Section>

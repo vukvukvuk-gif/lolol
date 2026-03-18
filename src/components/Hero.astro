@@ -1,0 +1,99 @@
+---
+import Section from "./ui/Section.astro";
+import { CheckCircle, ArrowRight, Phone } from "lucide-react";
+---
+
+<Section
+    id="hero"
+    class="relative overflow-hidden bg-background-mint min-h-screen flex items-center justify-center pt-32 pb-20 md:pt-40 md:pb-0"
+    containerClass="relative z-10 w-full"
+>
+    <div
+        class="absolute bottom-0 left-0 lg:-left-24 xl:-left-32 w-[22%] xl:w-[26%] max-w-[500px] z-10 hidden lg:block pointer-events-none opacity-0 animate-fade-in delay-200"
+    >
+        <img
+            src="/images/hero/hero-left-women.png"
+            alt="Professional house cleaner holding eco-friendly supplies in St. Petersburg FL"
+            class="w-full h-full object-contain object-bottom brightness-[1.08] saturate-[0.82]"
+            width="500"
+            height="700"
+            loading="eager"
+            fetchpriority="high"
+        />
+    </div>
+
+    <div
+        class="absolute bottom-0 right-0 lg:-right-24 xl:-right-32 w-[22%] xl:w-[26%] max-w-[500px] z-10 hidden lg:block pointer-events-none opacity-0 animate-fade-in delay-300"
+    >
+        <img
+            src="/images/hero/hero-right-women.png"
+            alt="Licensed and insured home cleaning professional ready for service"
+            class="w-full h-full object-contain object-bottom saturate-[0.82] brightness-[1.08]"
+            width="500"
+            height="700"
+            loading="eager"
+            fetchpriority="high"
+        />
+    </div>
+
+    <div class="max-w-4xl mx-auto flex flex-col items-center text-center px-4">
+        <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-secondary/5 text-secondary/70 text-sm font-medium mb-8 shadow-sm opacity-0 animate-fade-in-up"
+        >
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Trusted by St. Pete Homeowners
+        </div>
+
+        <h1
+            class="text-5xl md:text-7xl lg:text-7xl font-bold text-secondary leading-[1.05] tracking-tight mb-8 opacity-0 animate-fade-in-up"
+        >
+            A calmer home starts with a<br />
+            <span class="text-primary">cleaner, brighter reset</span>
+        </h1>
+
+        <p
+            class="text-lg md:text-xl text-text-light mb-10 max-w-xl leading-relaxed opacity-0 animate-fade-in-up delay-100"
+        >
+            Family-owned, licensed & insured. We bring the supplies, you enjoy
+            the results - guaranteed.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 py-5 opacity-0 animate-fade-in-up delay-200">
+            <a
+                href="#quote"
+                class="inline-flex items-center gap-2 bg-primary text-white text-xl font-bold px-12 py-5 rounded-full shadow-xl shadow-primary/40 hover:shadow-2xl hover:shadow-primary/50 hover:-translate-y-1 transition-all duration-300"
+            >
+                Get My Quote
+                <ArrowRight className="w-5 h-5" />
+            </a>
+            <a
+                href="tel:9543933479"
+                class="inline-flex items-center gap-2 bg-white text-secondary text-lg font-bold px-8 py-4 rounded-full shadow-lg border border-border-light hover:-translate-y-1 transition-all duration-300"
+            >
+                <Phone className="w-5 h-5 text-primary" />
+                Call (954) 393-3479
+            </a>
+        </div>
+
+        <div
+            class="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-text-light font-medium opacity-0 animate-fade-in-up delay-300"
+        >
+            <div class="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-primary" />
+                <span>Licensed & Insured</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-primary" />
+                <span>Supplies Included</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-primary" />
+                <span>Satisfaction Guaranteed</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-primary" />
+                <span>Fast Quotes</span>
+            </div>
+        </div>
+    </div>
+</Section>

@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Lexend", "sans-serif";
+
+  /* Brand Colors */
+  --color-primary: #059669;
+  --color-primary-dark: #047857;
+  --color-secondary: #0C0C0C;
+
+  /* Text Scale */
+  --color-text: #0C0C0C;
+  --color-text-900: #0C0C0C;
+  --color-text-700: #333333;
+  --color-text-600: #4B5563;
+  --color-text-500: #6B7280;
+  --color-text-light: #555555;
+
+  /* Backgrounds */
+  --color-background: #FFFFFF;
+  --color-background-mint: #F8FAFC;
+  --color-surface: #F9FAFB;
+  --color-surface-hover: #F3F4F6;
+
+  /* Borders */
+  --color-border: #F3F4F6;
+  --color-border-light: #E5E7EB;
+
+  /* Accent Colors (for feature cards) */
+  --color-accent-rose: #F43F5E;
+  --color-accent-rose-bg: #FEE2E2;
+  --color-accent-blue: #3B82F6;
+  --color-accent-blue-bg: #DBEAFE;
+  --color-accent-amber: #F59E0B;
+  --color-accent-amber-bg: #FEF3C7;
+  --color-accent-emerald: #10B981;
+  --color-accent-emerald-bg: #D1FAE5;
+
+  /* Legacy aliases (kept for compatibility) */
+  --color-mint: #059669;
+  --color-mist: #F8FAFC;
+  --color-steel: #94A3B8;
+  --color-slate: #1E293B;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@utility animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@utility delay-100 {
+  animation-delay: 100ms;
+}
+
+@utility delay-200 {
+  animation-delay: 200ms;
+}
+
+@utility delay-300 {
+  animation-delay: 300ms;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    @apply bg-background text-text antialiased;
+  }
+}

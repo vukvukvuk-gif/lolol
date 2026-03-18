@@ -1,0 +1,58 @@
+---
+import Section from "./ui/Section.astro";
+import { MapPin } from "lucide-react";
+import { serviceAreas } from "../data/service-areas";
+---
+
+<Section id="areas" class="bg-background-mint py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Centered Header -->
+        <div class="text-center mb-16">
+            <span
+                class="inline-flex items-center gap-1.5 text-text-600 font-semibold tracking-wider uppercase text-xs bg-white border border-border-light px-4 py-1.5 rounded-full mb-4"
+                >Service Coverage</span
+            >
+            <h2
+                class="text-4xl md:text-5xl font-bold text-secondary mb-4 font-sans tracking-tight"
+            >
+                Areas We <span class="text-primary">Serve</span>
+            </h2>
+            <p class="text-text-light text-lg max-w-lg mx-auto">
+                Based in St. Petersburg and proudly serving nearby communities.
+            </p>
+        </div>
+
+        <!-- Location Tags -->
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-3">
+                {
+                    serviceAreas.map((area) => (
+                        <a
+                            href={`/areas/${area.slug}`}
+                            class={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all duration-300 group
+                            ${
+                                area.primary
+                                    ? "bg-white border-primary shadow-md transform scale-105"
+                                    : "bg-white/60 border-transparent hover:bg-white hover:border-border-light hover:shadow-sm"
+                            }`}
+                        >
+                            <MapPin
+                                className={`w-4 h-4 ${area.primary ? "text-primary fill-primary/20" : "text-text-400 group-hover:text-primary transition-colors"}`}
+                            />
+                            <span
+                                class={`text-sm ${area.primary ? "font-bold text-secondary" : "font-medium text-text-600 group-hover:text-secondary transition-colors"}`}
+                            >
+                                {area.name}
+                            </span>
+                            {area.primary && (
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-primary text-white px-1.5 py-0.5 rounded ml-1">
+                                    HQ
+                                </span>
+                            )}
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</Section>

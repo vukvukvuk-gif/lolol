@@ -1,0 +1,87 @@
+---
+import { Mail, Phone, Clock3, MapPin } from "lucide-react";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-secondary text-white pt-20 pb-10">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-[1.3fr_0.9fr_0.9fr]">
+            <div class="text-center md:text-left">
+                <a href="/" class="inline-flex items-center gap-2">
+                    <img
+                        src="/images/logo.png"
+                        alt="Home Cleaning & Co"
+                        class="h-12 w-auto object-contain brightness-0 invert"
+                    />
+                </a>
+                <p class="mt-6 max-w-md text-lg leading-relaxed text-white/70">
+                    Thoughtful, family-run cleaning services for busy households
+                    across St. Petersburg and nearby Pinellas communities.
+                </p>
+            </div>
+
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/50">
+                    Contact
+                </p>
+                <address class="mt-5 flex flex-col gap-4 not-italic">
+                    <a
+                        href="mailto:support@homecleaningco.com"
+                        class="inline-flex items-center gap-3 text-white/80 transition-colors duration-300 hover:text-white"
+                    >
+                        <div class="rounded-full bg-white/10 p-2 text-primary">
+                            <Mail className="w-5 h-5" />
+                        </div>
+                        <span class="font-medium">support@homecleaningco.com</span>
+                    </a>
+
+                    <a
+                        href="tel:9543933479"
+                        class="inline-flex items-center gap-3 text-white/80 transition-colors duration-300 hover:text-white"
+                    >
+                        <div class="rounded-full bg-white/10 p-2 text-primary">
+                            <Phone className="w-5 h-5" />
+                        </div>
+                        <span class="font-medium">(954) 393-3479</span>
+                    </a>
+                </address>
+            </div>
+
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/50">
+                    Service Details
+                </p>
+                <div class="mt-5 space-y-4 text-white/80">
+                    <p class="flex items-start gap-3">
+                        <span class="rounded-full bg-white/10 p-2 text-primary">
+                            <Clock3 className="h-5 w-5" />
+                        </span>
+                        <span>Open daily from 7:00 AM to 8:00 PM.</span>
+                    </p>
+                    <p class="flex items-start gap-3">
+                        <span class="rounded-full bg-white/10 p-2 text-primary">
+                            <MapPin className="h-5 w-5" />
+                        </span>
+                        <span>
+                            Serving St. Petersburg, Gulfport, Seminole, Treasure
+                            Island, and nearby areas.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-between gap-6 pt-8 md:flex-row">
+            <p class="text-sm font-medium text-white/40">
+                (c) {currentYear} Home Cleaning & Co. All rights reserved.
+            </p>
+
+            <div class="flex items-center gap-5 text-sm text-white/50">
+                <a href="#about" class="transition-colors hover:text-white">About</a>
+                <a href="#services" class="transition-colors hover:text-white">Services</a>
+                <a href="#quote" class="transition-colors hover:text-white">Get a quote</a>
+            </div>
+        </div>
+    </div>
+</footer>

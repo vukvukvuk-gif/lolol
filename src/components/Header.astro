@@ -1,0 +1,271 @@
+---
+import { Phone } from "lucide-react";
+
+const links = [
+    { text: "About", href: "#about" },
+    { text: "Services", href: "#services" },
+    { text: "Reviews", href: "#testimonials" },
+    { text: "Areas", href: "#areas" },
+    { text: "Support", href: "#faq" },
+];
+---
+
+<header
+    class="fixed top-0 md:top-6 left-0 right-0 z-50 flex justify-center px-0 md:px-4 pointer-events-none transition-transform duration-300"
+>
+    <div
+        class="pointer-events-auto bg-white md:bg-white/95 md:backdrop-blur-xl md:border md:border-secondary/5 md:shadow-2xl md:rounded-full px-4 md:px-6 py-2 flex items-center justify-between gap-2 lg:gap-6 max-w-5xl w-full md:w-auto transition-all duration-500"
+    >
+        <a href="/" class="flex items-center gap-2 order-1 shrink-0">
+            <img
+                src="/images/logo.png"
+                alt="Home Cleaning & Co"
+                class="h-9 md:h-10 w-auto object-contain"
+            />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-2 order-2">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="px-2 lg:px-4 py-2 text-xs lg:text-sm font-medium text-text-light hover:text-secondary hover:bg-black/5 rounded-full transition-all whitespace-nowrap"
+                    >
+                        {link.text}
+                    </a>
+                ))
+            }
+        </nav>
+
+        <div class="hidden md:flex items-center gap-2 lg:gap-4 order-3 pl-2">
+            <a
+                href="tel:9543933479"
+                class="flex items-center gap-2 text-text-light hover:text-primary font-medium transition-colors whitespace-nowrap"
+            >
+                <Phone className="w-4 h-4" />
+                <span class="hidden lg:inline">(954) 393-3479</span>
+            </a>
+            <a
+                href="#quote"
+                class="bg-primary hover:bg-primary-dark text-white text-sm font-bold px-6 py-2.5 rounded-full transition-colors shadow-xl hover:shadow-primary/30 ring-2 ring-primary/20 whitespace-nowrap"
+            >
+                Book Now
+            </a>
+        </div>
+
+        <button
+            id="menu-btn"
+            class="md:hidden p-2 rounded-full transition-colors order-3 hamburger-btn"
+            aria-label="Toggle menu"
+        >
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <div
+        id="mobile-menu"
+        class="absolute top-full left-0 right-0 mt-0 md:hidden invisible opacity-0 -translate-y-2 transition-all duration-300 ease-in-out z-40 pointer-events-auto"
+    >
+        <div
+            class="bg-white shadow-lg border-t border-border py-4 px-5 flex flex-col gap-1"
+        >
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="text-base font-medium text-secondary/80 hover:text-primary py-3 px-2 border-b border-border transition-all mobile-link text-center"
+                    >
+                        {link.text}
+                    </a>
+                ))
+            }
+            <a
+                href="tel:9543933479"
+                class="text-base font-medium text-secondary/80 hover:text-primary py-3 px-2 border-b border-border transition-all mobile-link text-center flex items-center justify-center gap-2"
+            >
+                <Phone className="w-4 h-4" />
+                (954) 393-3479
+            </a>
+            <a
+                href="#quote"
+                class="mobile-link bg-primary text-white text-base font-bold px-6 py-3 rounded-full shadow-lg shadow-primary/30 text-center mt-4 hover:bg-primary-dark transition-colors"
+            >
+                Book Now
+            </a>
+        </div>
+    </div>
+</header>
+
+<script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        menuBtn?.classList.toggle("open", isMenuOpen);
+        if (isMenuOpen) {
+            mobileMenu?.classList.remove(
+                "invisible",
+                "opacity-0",
+                "-translate-y-2",
+            );
+        } else {
+            mobileMenu?.classList.add(
+                "invisible",
+                "opacity-0",
+                "-translate-y-2",
+            );
+        }
+    }
+
+    menuBtn?.addEventListener("click", toggleMenu);
+
+    mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            if (isMenuOpen) toggleMenu();
+        });
+    });
+
+    document.addEventListener("click", (e) => {
+        if (
+            isMenuOpen &&
+            mobileMenu &&
+            !mobileMenu.contains(e.target as Node) &&
+            !menuBtn?.contains(e.target as Node)
+        ) {
+            toggleMenu();
+        }
+    });
+
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(
+        "nav a[href^='#'], .mobile-link",
+    );
+
+    function clearActiveLinks() {
+        navLinks.forEach((link) => {
+            if (
+                !link.classList.contains("bg-primary") &&
+                !link.classList.contains("text-white")
+            ) {
+                link.classList.remove(
+                    "text-primary",
+                    "bg-primary/10",
+                    "font-semibold",
+                );
+                link.classList.add(
+                    "text-text-light",
+                    "hover:text-secondary",
+                    "hover:bg-black/5",
+                    "font-medium",
+                );
+            }
+        });
+    }
+
+    function setActiveLink(sectionId: string) {
+        navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === `#${sectionId}`) {
+                if (!link.classList.contains("bg-primary")) {
+                    link.classList.add(
+                        "text-primary",
+                        "bg-primary/10",
+                        "font-semibold",
+                    );
+                    link.classList.remove(
+                        "text-text-light",
+                        "hover:text-secondary",
+                        "hover:bg-black/5",
+                        "font-medium",
+                    );
+                }
+            } else {
+                if (
+                    !link.classList.contains("bg-primary") &&
+                    !link.classList.contains("text-white")
+                ) {
+                    link.classList.remove(
+                        "text-primary",
+                        "bg-primary/10",
+                        "font-semibold",
+                    );
+                    link.classList.add(
+                        "text-text-light",
+                        "hover:text-secondary",
+                        "hover:bg-black/5",
+                        "font-medium",
+                    );
+                }
+            }
+        });
+    }
+
+    function updateScrollSpy() {
+        const scrollY = window.scrollY;
+        const offset = 150;
+        const firstSection = sections[0] as HTMLElement;
+        if (firstSection && scrollY < firstSection.offsetTop - offset) {
+            clearActiveLinks();
+            return;
+        }
+
+        let currentSection = "";
+        sections.forEach((section) => {
+            const el = section as HTMLElement;
+            const sectionTop = el.offsetTop - offset;
+            if (scrollY >= sectionTop) {
+                currentSection = el.getAttribute("id") || "";
+            }
+        });
+
+        if (currentSection) {
+            setActiveLink(currentSection);
+        } else {
+            clearActiveLinks();
+        }
+    }
+
+    window.addEventListener("scroll", updateScrollSpy, { passive: true });
+    updateScrollSpy();
+</script>
+
+<style>
+    .hamburger-icon {
+        width: 22px;
+        height: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .hamburger-icon span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: #1a1a2e;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+    }
+
+    .hamburger-btn.open .hamburger-icon span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.open .hamburger-icon span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .hamburger-btn.open .hamburger-icon span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+</style>
