@@ -48,3 +48,7 @@ The project already includes:
 npm run build
 npm run preview
 ```
+
+## Promotional landing page
+
+`/landing` contains the cleaning voucher landing page. Source: `src/pages/landing.astro`; dedicated styles, script, and photos: `public/landing-assets/`. The homepage is unchanged. The form uses the existing `/api/send-email` endpoint and the Resend environment variables documented above. A successful request sends a lead; it does not confirm a booking or automatically issue a voucher.
