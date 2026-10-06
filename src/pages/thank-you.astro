@@ -1,0 +1,37 @@
+---
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Request Received | Home Cleaning & Co</title>
+    <link rel="icon" href="/landing-assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header><a href="/" aria-label="Home Cleaning and Co home"><img src="/landing-assets/logo.png" alt="Home Cleaning & Co" width="190" height="76" /></a><a class="phone" href="tel:+19543933479">(954) 393-3479</a></header>
+    <main>
+      <section aria-labelledby="confirmation-title">
+        <div class="photo" role="img" aria-label="A bright, freshly cleaned living room"></div>
+        <div class="message">
+          <div class="check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m8 16 5 5 11-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+          <p class="eyebrow">THANK YOU FOR CHOOSING US</p>
+          <h1 id="confirmation-title">Your request has<br />been received!</h1>
+          <p class="intro">Thanks for choosing Home Cleaning &amp; Co. We’ll reach out shortly to confirm your cleaning details.</p>
+          <div class="next"><strong>What happens next?</strong><p>Our team will contact you using the details you provided to discuss your cleaning needs.</p></div>
+          <a class="button" href="/landing">Back to our website</a>
+          <p class="help">Need to speak with us? <a href="tel:+19543933479">(954) 393-3479</a><br /><span>Open daily · 7:00 AM – 8:00 PM</span></p>
+        </div>
+      </section>
+    </main>
+    <footer>Home Cleaning &amp; Co · St. Petersburg, Florida</footer>
+  </body>
+</html>
+<style>
+  :global(*){box-sizing:border-box} :global(body){margin:0;background:#edf3f0;color:#202b27;font-family:Urbanist,Arial,sans-serif}header{background:#050606;padding:22px max(24px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}header img{display:block;width:170px;height:auto;background:white;padding:8px;border-radius:4px}.phone{color:white;text-decoration:none;font-weight:700;font-size:19px}main{padding:64px 24px 40px}section{max-width:1080px;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;background:white;border-radius:18px;overflow:hidden;box-shadow:0 20px 65px #123d2720}.photo{background:url('/landing-assets/hero-clean-home.jpg') center/cover;min-height:580px}.message{padding:48px}.check{width:66px;height:66px;display:grid;place-items:center;background:#e0f6ed;border-radius:50%;color:#008665;margin-bottom:24px}.check svg{width:36px;height:36px}.eyebrow{font-size:13px;letter-spacing:1.5px;color:#007b60;font-weight:800}h1{font-size:44px;line-height:1.12;letter-spacing:-1px;margin:14px 0 20px}.intro{font-size:19px;line-height:1.6;color:#52615a}.next{border-left:3px solid #009779;padding:4px 0 4px 18px;margin:26px 0}.next strong{font-size:17px}.next p{font-size:16px;line-height:1.6;color:#52615a;margin:6px 0 0}.button{display:inline-block;padding:17px 28px;border-radius:5px;background:#00876b;color:white;text-decoration:none;font-size:18px;font-weight:700}.button:hover{background:#006a54}.help{font-size:15px;line-height:1.9;margin:25px 0 0}.help a{color:#00765c;font-weight:700;text-underline-offset:3px}.help span{color:#627068}footer{text-align:center;padding:0 24px 32px;font-size:14px;color:#627068}a:focus-visible{outline:3px solid #2ab892;outline-offset:5px}@media(max-width:760px){main{padding:28px 18px}section{grid-template-columns:1fr}.photo{min-height:180px;max-height:180px;background-position:center 55%}.message{padding:30px 25px}h1{font-size:36px}header{padding:18px}header img{width:135px}.phone{font-size:16px}.button{display:block;text-align:center}}
+</style>

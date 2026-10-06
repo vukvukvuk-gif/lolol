@@ -27,8 +27,8 @@ form.addEventListener('submit', async (event) => {
    body: JSON.stringify(Object.fromEntries(new FormData(form)))
   });
   if (!response.ok) throw new Error('Request failed');
-  status.textContent = 'Your cleaning request has been sent! We’ll be in touch to confirm the details.';
   form.reset();
+  window.location.assign('/thank-you');
  } catch {
   status.textContent = 'We couldn’t send your request. Please try again or call (954) 393-3479.';
  } finally {
