@@ -10,3 +10,4 @@
 
 
 .nav-wrap .brand{flex:0 0 140px;padding:0}.footer-grid .brand{width:180px;padding:0}.brand img{width:100%;height:auto;object-fit:contain}@media(max-width:760px){.nav-wrap .brand{flex-basis:100px}}@media(max-width:440px){.nav-wrap .brand{flex-basis:85px}}
+.nav-wrap .brand,.footer-grid .brand{background:transparent}
