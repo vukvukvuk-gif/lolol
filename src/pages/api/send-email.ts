@@ -2,65 +2,51 @@ import type { APIRoute } from "astro";
 import { Resend } from "resend";
 
 export const prerender = false;
-
-const resendApiKey =
-    (import.meta && import.meta.env && import.meta.env.RESEND_API_KEY) ||
-    process.env.RESEND_API_KEY;
-const leadRecipient =
-    (import.meta && import.meta.env && import.meta.env.LEAD_NOTIFICATION_EMAIL) ||
-    process.env.LEAD_NOTIFICATION_EMAIL ||
-    "support@homecleaningco.com";
-const fromEmail =
-    (import.meta && import.meta.env && import.meta.env.RESEND_FROM_EMAIL) ||
-    process.env.RESEND_FROM_EMAIL ||
-    "Home Cleaning & Co <onboarding@resend.dev>";
+const env = (key: string) => process.env[key] || import.meta.env[key];
+const reply = (status: number, message: string) => new Response(JSON.stringify({ message }), {
+    status, headers: { "Content-Type": "application/json" },
+});
 
 export const POST: APIRoute = async ({ request }) => {
-    if (!resendApiKey) {
-        return new Response(
-            JSON.stringify({ error: "RESEND_API_KEY is not configured" }),
-            { status: 500 },
-        );
+    let body: Record<string, unknown>;
+    try { body = await request.json(); } catch { return reply(400, "Invalid request"); }
+    const fields = ["firstName", "lastName", "email", "phone", "zipCode"] as const;
+    if (!body || fields.some(key => typeof body[key] !== "string" || !(body[key] as string).trim() || (body[key] as string).length > 254)) {
+        return reply(400, "All form fields are required and must be valid");
     }
+    const [firstName, lastName, email, phone, zipCode] = fields.map(key => (body[key] as string).trim());
+    const text = `New cleaning request\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nZIP code: ${zipCode}`;
+    const token = env("TELEGRAM_BOT_TOKEN");
+    const chatId = env("TELEGRAM_CHAT_ID");
+    const resendKey = env("RESEND_API_KEY");
+    const deliveries: Promise<void>[] = [];
 
-    const resend = new Resend(resendApiKey);
-
-    try {
-        const body = await request.json();
-        const { firstName, lastName, email, phone, zipCode } = body;
-
-        if (!firstName || !lastName || !email || !phone || !zipCode) {
-            return new Response(
-                JSON.stringify({ error: "All form fields are required" }),
-                { status: 400 },
-            );
-        }
-
-        const { error } = await resend.emails.send({
-            from: fromEmail,
-            to: [leadRecipient],
-            subject: `New Lead: ${firstName} ${lastName}`,
-            html: `
-                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                    <h2 style="color: #2F9E87;">New Free Estimate Request</h2>
-                    <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
-                    <p><strong>Zip Code:</strong> ${zipCode}</p>
-                </div>
-            `,
-        });
-
-        if (error) {
-            return new Response(JSON.stringify({ error }), { status: 400 });
-        }
-
-        return new Response(JSON.stringify({ message: "Success" }), {
-            status: 200,
-        });
-    } catch (e) {
-        return new Response(JSON.stringify({ error: "Internal Error" }), {
-            status: 500,
-        });
+    if (token && chatId) {
+        deliveries.push((async () => {
+            const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text, link_preview_options: { is_disabled: true } }),
+                signal: AbortSignal.timeout(10000),
+            });
+            const result = await response.json();
+            if (!response.ok || !result.ok) throw new Error("Notification delivery failed");
+        })());
     }
+    if (resendKey) {
+        deliveries.push((async () => {
+            const { error } = await new Resend(resendKey).emails.send({
+                from: env("RESEND_FROM_EMAIL") || "Home Cleaning & Co <onboarding@resend.dev>",
+                to: [env("LEAD_NOTIFICATION_EMAIL") || "support@homecleaningco.com"],
+                subject: "New cleaning request",
+                text,
+            });
+            if (error) throw new Error("Email delivery failed");
+        })());
+    }
+    if (!deliveries.length) return reply(503, "Notifications are not configured");
+    const results = await Promise.allSettled(deliveries);
+    // A delivered email preserves the lead even if Telegram is temporarily unavailable.
+    return results.some(result => result.status === "fulfilled")
+        ? reply(200, "Success") : reply(502, "Unable to send request. Please try again or call us.");
 };
