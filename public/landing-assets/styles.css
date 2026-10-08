@@ -11,3 +11,18 @@
 
 .nav-wrap .brand{flex:0 0 140px;padding:0}.footer-grid .brand{width:180px;padding:0}.brand img{width:100%;height:auto;object-fit:contain}@media(max-width:760px){.nav-wrap .brand{flex-basis:100px}}@media(max-width:440px){.nav-wrap .brand{flex-basis:85px}}
 .nav-wrap .brand,.footer-grid .brand{background:transparent}
+/* Refined landing-page header */
+header{background:linear-gradient(115deg,#080e0d,#101b18);border-bottom:1px solid #8ecdbb26;box-shadow:0 5px 24px #0002}
+.nav-wrap{min-height:120px;padding:12px 36px;gap:38px;max-width:1200px}
+.nav-wrap .brand{flex:0 0 124px;display:flex;align-items:center;max-width:none}
+.nav-wrap .brand img{height:100px;width:124px;object-fit:contain}
+.nav-wrap nav{gap:30px}
+.nav-wrap nav a{font-size:16px;font-weight:600;color:#e0e9e5;padding:12px 0;transition:color .15s}
+.nav-wrap nav a:hover{color:#8bdac4}
+.nav-wrap .phone{flex-direction:row;gap:12px;font-size:20px;font-weight:700;background:#8ed7c410;border:1px solid #8ed7c449;border-radius:12px;padding:15px 20px;transition:background .15s,border-color .15s}
+.nav-wrap .phone svg{width:22px;height:22px;color:#9edaca}
+.nav-wrap .phone:hover{background:#8ed7c424;border-color:#8ed7c480}
+html{scroll-padding-top:125px}
+@media(max-width:1000px){.nav-wrap{gap:24px;padding:12px 24px}.nav-wrap nav{gap:22px}.nav-wrap .phone{font-size:18px;padding:14px 16px}}
+@media(max-width:760px){html{scroll-padding-top:102px}.nav-wrap{min-height:96px;padding:10px 18px;gap:12px}.nav-wrap .brand{flex-basis:92px}.nav-wrap .brand img{width:92px;height:76px}.nav-wrap .phone{font-size:16px;padding:12px 14px;margin-left:0;gap:8px}.nav-wrap .phone svg{display:none}.menu-toggle{order:3;border-color:#8ed7c449;border-radius:9px;padding:11px;color:#e0e9e5}.nav-wrap nav{border-top:1px solid #ffffff14;padding:10px 0 0;gap:26px}.nav-wrap nav a{font-size:16px}.nav-wrap .brand{margin-right:auto}}
+@media(max-width:390px){.nav-wrap{padding:8px 12px;gap:8px}.nav-wrap .brand{flex-basis:76px}.nav-wrap .brand img{width:76px;height:68px}.nav-wrap .phone{font-size:14px;padding:11px 10px}.menu-toggle{font-size:12px;padding:10px 8px}}
