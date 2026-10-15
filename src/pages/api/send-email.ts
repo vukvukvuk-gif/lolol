@@ -15,7 +15,8 @@ export const POST: APIRoute = async ({ request }) => {
         return reply(400, "All form fields are required and must be valid");
     }
     const [firstName, lastName, email, phone, zipCode] = fields.map(key => (body[key] as string).trim());
-    const text = `New cleaning request\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nZIP code: ${zipCode}`;
+    const source = body.source === "landing-page" ? "Landing page" : body.source === "main-website" ? "Main website" : "Not specified";
+    const text = `New cleaning request\nSource: ${source}\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nZIP code: ${zipCode}`;
     const token = env("TELEGRAM_BOT_TOKEN");
     const chatId = env("TELEGRAM_CHAT_ID");
     const resendKey = env("RESEND_API_KEY");
@@ -38,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
             const { error } = await new Resend(resendKey).emails.send({
                 from: env("RESEND_FROM_EMAIL") || "Home Cleaning & Co <onboarding@resend.dev>",
                 to: [env("LEAD_NOTIFICATION_EMAIL") || "support@homecleaningco.com"],
-                subject: "New cleaning request",
+                subject: `New cleaning request — ${source}`,
                 text,
             });
             if (error) throw new Error("Email delivery failed");

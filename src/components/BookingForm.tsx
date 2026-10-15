@@ -36,7 +36,7 @@ export default function BookingForm() {
             const response = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email, phone, zipCode }),
+                body: JSON.stringify({ firstName, lastName, email, phone, zipCode, source: 'main-website' }),
             });
 
             if (!response.ok) {
