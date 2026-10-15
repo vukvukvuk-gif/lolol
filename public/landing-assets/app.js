@@ -30,7 +30,7 @@ form.addEventListener('submit', async (event) => {
   form.reset();
   window.location.assign('/thank-you');
  } catch {
-  status.textContent = 'We couldn’t send your request. Please try again or call (954) 393-3479.';
+  status.textContent = 'We couldn’t send your request. Please try again or call (727) 280-6338.';
  } finally {
   submitting = false;
   button.disabled = false;
