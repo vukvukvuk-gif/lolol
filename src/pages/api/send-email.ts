@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
+import { requestSource } from "../../lib/request-source.mjs";
 
 export const prerender = false;
 const env = (key: string) => process.env[key] || import.meta.env[key];
@@ -15,7 +16,7 @@ export const POST: APIRoute = async ({ request }) => {
         return reply(400, "All form fields are required and must be valid");
     }
     const [firstName, lastName, email, phone, zipCode] = fields.map(key => (body[key] as string).trim());
-    const source = body.source === "landing-page" ? "Landing page" : body.source === "main-website" ? "Main website" : "Not specified";
+    const source = requestSource(body.source, request.headers.get("referer"), request.url);
     const text = `New cleaning request\nSource: ${source}\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nZIP code: ${zipCode}`;
     const token = env("TELEGRAM_BOT_TOKEN");
     const chatId = env("TELEGRAM_CHAT_ID");
